@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:ako_shop/src/Localization/LanguageConstants.dart';
 import 'package:ako_shop/src/Models/MenuBannerModel.dart';
 import 'package:ako_shop/src/Utility/ConstantLocal.dart';
@@ -157,7 +159,6 @@ class CatalogGrid extends StatelessWidget {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          print("index:${menu.title}");
                         },
                         child: Container(
                           width: 140,

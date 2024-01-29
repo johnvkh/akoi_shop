@@ -1,11 +1,22 @@
-import 'package:ako_shop/src/Models/ProductModel.dart';
-import 'package:awesome_icons/awesome_icons.dart';
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names
 
+import 'package:ako_shop/src/Models/ProductModel.dart';
+import 'package:ako_shop/src/Utility/Components/ButtonWidget.dart';
+import 'package:flutter/material.dart';
+import 'package:responsive_grid/responsive_grid.dart';
+
+import '../../../../Utility/Components/Utils.dart';
 import '../../../../Utility/ConstantLocal.dart';
 
-class ProductRecommend extends StatelessWidget {
+class ProductRecommend extends StatefulWidget {
   const ProductRecommend({super.key});
+
+  @override
+  State<ProductRecommend> createState() => _ProductRecommendState();
+}
+
+class _ProductRecommendState extends State<ProductRecommend> {
+  Size screenSize = Utils().getScreenSize();
 
   @override
   Widget build(BuildContext context) {
@@ -587,6 +598,7 @@ class ProductRecommend extends StatelessWidget {
         isDiscount: true,
       ),
     ];
+
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Row(
@@ -595,7 +607,7 @@ class ProductRecommend extends StatelessWidget {
           Column(
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 0.65,
+                width: screenSize.width * 0.65,
                 height: 60,
                 decoration: const BoxDecoration(
                   color: Color.fromRGBO(255, 255, 255, 1),
@@ -624,8 +636,17 @@ class ProductRecommend extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.65,
+                width: screenSize.width * 0.65,
                 child: buildProductRecommendGrid(context, listProduct),
+              ),
+              ButtonWidget(
+                width: screenSize.width * 0.2,
+                height: 40,
+                onPass: () {},
+                content: "ดูเพิ่มเติม",
+                color1: Colors.white,
+                color2: Color.fromRGBO(240, 240, 240, 1),
+                textStyle: TextStyle(fontSize: 16),
               ),
             ],
           ),
@@ -637,154 +658,147 @@ class ProductRecommend extends StatelessWidget {
 
   Widget buildProductRecommendGrid(
       BuildContext context, List<ProductModel> listProduct) {
-    print("index:${listProduct.length}");
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.65,
-      height: 2450,
-      child: GridView.builder(
-        //scrollDirection: Axis.vertical,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 6,
-          childAspectRatio: 0.68,
-        ),
-        itemCount: listProduct.length,
-        itemBuilder: (context, index) {
-          final ProductModel product = listProduct[index];
-          return Column(
-            children: [
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {
-                    print("index:${product.titleProduct}");
-                  },
-                  child: Stack(children: [
-                    Container(
-                      width: 190,
-                      height: 295,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black12,
+      width: screenSize.width * 0.65,
+      // height: 2450,
+      child: ResponsiveStaggeredGridList(
+          desiredItemWidth: 190,
+          // minSpacing: 10,
+          children:
+              List.generate(listProduct.length, (index) => index).map((i) {
+            final ProductModel product = listProduct[i];
+            return Column(
+              children: [
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Stack(children: [
+                      Container(
+                        width: 190,
+                        height: 295,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.black12,
+                          ),
                         ),
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            product.imageProduct.toString(),
-                          ),
-                          const SizedBox(height: 2),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 5,
-                              right: 5,
-                              top: 5,
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              product.imageProduct.toString(),
                             ),
-                            child: Text(
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: true,
-                              product.titleProduct.toString(),
-                              maxLines: 2,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 13),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    product.isDiscount == true
-                        ? Positioned(
-                            right: 0,
-                            top: 0,
-                            child: Container(
-                              width: 40,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(255, 233, 122, 1),
+                            const SizedBox(height: 2),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 5,
+                                right: 5,
+                                top: 5,
                               ),
                               child: Text(
-                                "-${product.discount}%",
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: true,
+                                product.titleProduct.toString(),
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontSize: 13),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      product.isDiscount == true
+                          ? Positioned(
+                              right: 0,
+                              top: 0,
+                              child: Container(
+                                width: 40,
+                                height: 20,
+                                decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(255, 233, 122, 1),
+                                ),
+                                child: Text(
+                                  "-${product.discount}%",
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.redAccent,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                      product.recommendShop == true
+                          ? Positioned(
+                              left: 0,
+                              top: 8,
+                              child: Image.asset(
+                                "assets/image/recommendShop.png",
+                                width: 55,
+                                height: 25,
+                                //color: Color.fromRGBO(246, 145, 19, 1),
+                                //fit: BoxFit.fill,
+                              ),
+                            )
+                          : const SizedBox(),
+                      Positioned(
+                        left: 10,
+                        bottom: 10,
+                        child: Text(
+                          "฿${product.priceProduct}",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.redAccent,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        bottom: 10,
+                        child: Text(
+                          "ขายแล้ว ${product.saledAmount} ชิ้น",
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      product.codeDiscount == true
+                          ? Positioned(
+                              left: 8,
+                              bottom: 35,
+                              child: Image.asset(
+                                "assets/image/ticket.png",
+                                width: 60,
+                                height: 28,
+                                color: const Color.fromRGBO(246, 145, 19, 1),
+                                fit: BoxFit.fill,
+                              ),
+                            )
+                          : const SizedBox(),
+                      product.codeDiscount == true
+                          ? Positioned(
+                              left: 14,
+                              bottom: 40,
+                              child: Text(
+                                "โค้ดลด ฿${product.codeAmountDiscount}",
                                 style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.redAccent,
+                                  fontSize: 10,
+                                  color: Colors.white,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                            ),
-                          )
-                        : const SizedBox(),
-                    product.recommendShop == true
-                        ? Positioned(
-                      left: 0,
-                      top: 8,
-                      child: Image.asset(
-                        "assets/image/recommendShop.png",
-                        width: 55,
-                        height: 25,
-                        //color: Color.fromRGBO(246, 145, 19, 1),
-                        //fit: BoxFit.fill,
-                      ),
-                    )
-                        : SizedBox(),
-                    Positioned(
-                      left: 10,
-                      bottom: 10,
-                      child: Text(
-                        "฿${product.priceProduct}",
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.redAccent,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Positioned(
-                      right: 10,
-                      bottom: 10,
-                      child: Text(
-                        "ขายแล้ว ${product.saledAmount} ชิ้น",
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    product.codeDiscount == true
-                        ? Positioned(
-                            left: 8,
-                            bottom: 35,
-                            child: Image.asset(
-                              "assets/image/ticket.png",
-                              width: 60,
-                              height: 28,
-                              color: Color.fromRGBO(246, 145, 19, 1),
-                              fit: BoxFit.fill,
-                            ),
-                          )
-                        : SizedBox(),
-                    product.codeDiscount == true
-                        ? Positioned(
-                            left: 14,
-                            bottom: 40,
-                            child: Text(
-                              "โค้ดลด ฿${product.codeAmountDiscount}",
-                              style: const TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        : SizedBox(),
-                  ]),
+                            )
+                          : const SizedBox(),
+                    ]),
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
-      ),
+              ],
+            );
+          }).toList()),
     );
   }
 }

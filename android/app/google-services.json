@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "370643649955",
+    "project_id": "akoishop",
+    "storage_bucket": "akoishop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370643649955:android:0bc5fa62b063a421e30616",
+        "android_client_info": {
+          "package_name": "com.jdev.ako_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKqKDdSKHDwINZcnFAlIlVD7WwiTlqtI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

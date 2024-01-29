@@ -41,6 +41,11 @@ dependencies:
   awesome_icons: ^1.1.0
   carousel_slider: ^4.2.1
   shared_preferences: ^2.2.2
+  cloud_firestore: ^4.14.0
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  firebase_storage: ^11.6.0
+  responsive_grid: ^2.4.4
 
 dev_dependencies:
   flutter_test:
