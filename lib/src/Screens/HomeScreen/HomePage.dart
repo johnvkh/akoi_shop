@@ -4,6 +4,7 @@ import 'package:ako_shop/src/Screens/HomeScreen/Section/Banner/MenuBanner.dart';
 import 'package:ako_shop/src/Screens/HomeScreen/Section/Banner/SlideBanner.dart';
 import 'package:ako_shop/src/Screens/HomeScreen/Section/Catalog/CatalogGrid.dart';
 import 'package:ako_shop/src/Screens/HomeScreen/Section/Header/HeaderWidget.dart';
+import 'package:ako_shop/src/Utility/Components/FooterWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../../Utility/ConstantLocal.dart';
@@ -29,10 +30,10 @@ class _HomePageState extends State<HomePage> {
               Container(
                 width: double.infinity,
                 color: Colors.white,
-                height: 139,
+                height: 119,
               ),
               Container(
-                height: 362,
+                height: 380,
                 width: double.infinity,
                 decoration: BoxDecoration(color: Colors.white, boxShadow: [
                   BoxShadow(
@@ -44,28 +45,31 @@ class _HomePageState extends State<HomePage> {
                 ]),
                 child: Row(
                   children: [
-                    const paddingLeftRigthPage(),
+                    const paddingLeftRigthPage(colors: Color.fromRGBO(255, 255, 255, 1)),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.65,
                       child: const Column(
                         children: [
-                          SlideBanner(),
-                          MenuBanner(),
+                          Padding(
+                            padding: EdgeInsets.only(top: 20),
+                            child: SlideBanner(),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: MenuBanner(),
+                          ),
                         ],
                       ),
                     ),
-                    const paddingLeftRigthPage(),
+                    const paddingLeftRigthPage(colors: Color.fromRGBO(255, 255, 255, 1)),
                   ],
                 ),
               ),
               const CatalogGrid(),
               const ProductRecommend(),
-              Container(
-                height: 1500,
-                width: double.infinity,
-                color: Colors.redAccent,
-              ),
+              const FooterWidget(),
             ],
+
           ),
         ),
         const HeaderWidget(),

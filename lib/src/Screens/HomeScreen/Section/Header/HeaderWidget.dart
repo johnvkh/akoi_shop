@@ -36,7 +36,19 @@ class _HeaderWidgetState extends State<HeaderWidget> {
       ),
       child: Row(
         children: [
-          const paddingLeftRigthPage(),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.175,
+            height: 119,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xffF53E2D),
+                    Color(0xFFFF6633),
+                  ]),
+            ),
+          ),
           Container(
             margin: const EdgeInsets.only(top: 8),
             width: MediaQuery.of(context).size.width * 0.65,
@@ -50,7 +62,19 @@ class _HeaderWidgetState extends State<HeaderWidget> {
               ],
             ),
           ),
-          const paddingLeftRigthPage(),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.175,
+            height: 119,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xffF53E2D),
+                    Color(0xFFFF6633),
+                  ]),
+            ),
+          ),
         ],
       ),
     );

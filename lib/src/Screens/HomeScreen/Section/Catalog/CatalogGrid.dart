@@ -83,7 +83,7 @@ class CatalogGrid extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20),
       child: Row(
         children: [
-          const paddingLeftRigthPage(),
+          const paddingLeftRigthPage(colors: Color.fromRGBO(245, 245, 245, 1)),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.65,
             child: Column(children: [
@@ -111,7 +111,7 @@ class CatalogGrid extends StatelessWidget {
               ),
             ]),
           ),
-          const paddingLeftRigthPage(),
+          const paddingLeftRigthPage(colors: Color.fromRGBO(245, 245, 245, 1)),
         ],
       ),
     );

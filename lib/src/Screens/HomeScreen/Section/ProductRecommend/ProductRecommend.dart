@@ -603,7 +603,7 @@ class _ProductRecommendState extends State<ProductRecommend> {
       padding: const EdgeInsets.only(top: 20),
       child: Row(
         children: [
-          const paddingLeftRigthPage(),
+          const paddingLeftRigthPage(colors: Color.fromARGB(255, 255, 255, 1)),
           Column(
             children: [
               Container(
@@ -650,7 +650,7 @@ class _ProductRecommendState extends State<ProductRecommend> {
               ),
             ],
           ),
-          const paddingLeftRigthPage(),
+          const paddingLeftRigthPage(colors: Color.fromARGB(255, 255, 255, 1)),
         ],
       ),
     );
