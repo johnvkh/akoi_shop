@@ -24,12 +24,11 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: backgroundColor,
       body: Stack(children: [
         SingleChildScrollView(
-          //controller: _scrollController,
           child: Column(
             children: [
               Container(
                 width: double.infinity,
-                color: Colors.white,
+                color: backgroundColor,
                 height: 119,
               ),
               Container(
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 ]),
                 child: Row(
                   children: [
-                    const paddingLeftRigthPage(colors: Color.fromRGBO(255, 255, 255, 1)),
+                    const paddingLeftRigthPage(colors: backgroundColor),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.65,
                       child: const Column(
@@ -61,15 +60,41 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    const paddingLeftRigthPage(colors: Color.fromRGBO(255, 255, 255, 1)),
+                    const paddingLeftRigthPage(colors: backgroundColor),
                   ],
                 ),
               ),
               const CatalogGrid(),
-              const ProductRecommend(),
-              const FooterWidget(),
+              Row(
+                children: [
+                  const paddingLeftRigthPage(colors: contentBackgroundColor),
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.65,
+                      // color: contentBackgroundColor,
+                      child: const ProductRecommend()),
+                  const paddingLeftRigthPage(colors: contentBackgroundColor),
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    color: footerBackgroundColor,
+                    width: MediaQuery.of(context).size.width * 0.175,
+                    height: 400,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.65,
+                    color: footerBackgroundColor,
+                    child: const FooterWidget(),
+                  ),
+                  Container(
+                    color: footerBackgroundColor,
+                    width: MediaQuery.of(context).size.width * 0.175,
+                    height: 400,
+                  ),
+                ],
+              ),
             ],
-
           ),
         ),
         const HeaderWidget(),
