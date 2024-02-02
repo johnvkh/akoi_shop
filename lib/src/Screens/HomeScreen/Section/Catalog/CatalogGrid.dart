@@ -5,6 +5,8 @@ import 'package:ako_shop/src/Models/MenuBannerModel.dart';
 import 'package:ako_shop/src/Utility/ConstantLocal.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../Utility/Components/Utils.dart';
+
 class CatalogGrid extends StatelessWidget {
   const CatalogGrid({super.key});
 
@@ -79,39 +81,67 @@ class CatalogGrid extends StatelessWidget {
           image: "assets/image/catalogs/22_books_hobbies.png"),
     ];
 
+
+    Size screenSize = Utils().getScreenSize();
+    int flex = 15;
+    int flexContent = 70;
+    double GridSize;
+    if (screenSize.width >= 950 && screenSize.width <= 1270) {
+      flex = 5;
+      flexContent = 90;
+      GridSize=0.6;
+    } else if (screenSize.width >= 1271 && screenSize.width <= 1370) {
+      flex = 10;
+      flexContent = 80;
+      GridSize=0.6;
+    } else {
+      flex = 15;
+      flexContent = 70;
+      GridSize=0.7;
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Row(
         children: [
-          const paddingLeftRigthPage(colors: contentBackgroundColor),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.65,
-            child: Column(children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.65,
-                decoration: const BoxDecoration(
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                ),
-                child:
-                    Image.asset("assets/image/load_app.jpg", fit: BoxFit.fill),
-              ),
-              const SizedBox(height: 20),
-              buildCatalogGrid(context, listMenu),
-              const SizedBox(height: 20),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.65,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                ),
-                child: Image.asset(
-                  "assets/image/catalogs/discount_banner.jpg",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ]),
+          Expanded(
+            flex: flex,
+            child: Container(),
           ),
-          const paddingLeftRigthPage(colors: contentBackgroundColor),
+          Expanded(
+            flex: flexContent,
+            child: SizedBox(
+              child: Column(
+                  children: [
+                Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                  child:
+                      Image.asset("assets/image/load_app.jpg", fit: BoxFit.fill),
+                ),
+                const SizedBox(height: 20),
+                buildCatalogGrid(context, listMenu),
+                const SizedBox(height: 20),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                  child: Image.asset(
+                    "assets/image/catalogs/discount_banner.jpg",
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ]),
+            ),
+          ),
+          Expanded(
+            flex: flex,
+            child: Container(),
+          ),
         ],
       ),
     );
@@ -120,7 +150,7 @@ class CatalogGrid extends StatelessWidget {
   Widget buildCatalogGrid(
       BuildContext context, List<MenuBannerModel> listMenu) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.65,
+      width: double.infinity,
       height: 393,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -142,7 +172,8 @@ class CatalogGrid extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.65,
+            // width: MediaQuery.of(context).size.width * GridSize,
+            width: double.infinity,
             height: 340,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
@@ -177,7 +208,7 @@ class CatalogGrid extends StatelessWidget {
                               const SizedBox(height: 2),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 2, right: 2),
+                                const EdgeInsets.only(left: 2, right: 2),
                                 child: Text(
                                   softWrap: true,
                                   menu.title.toString(),

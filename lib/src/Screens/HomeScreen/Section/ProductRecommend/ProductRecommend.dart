@@ -603,28 +603,7 @@ class _ProductRecommendState extends State<ProductRecommend> {
       padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 15),
-                child: Text(
-                  "สินค้าแนะนำประจำวัน",
-                  style: TextStyle(
-                    fontFamily: 'roboto',
-                    color: Colors.redAccent,
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ),
-              Divider(
-                color: Colors.redAccent,
-                thickness: 4,
-              ),
-            ],
-          ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           buildProductRecommendGrid(context, listProduct),
           ButtonWidget(
             width: screenSize.width * 0.2,
@@ -632,8 +611,8 @@ class _ProductRecommendState extends State<ProductRecommend> {
             onPass: () {},
             content: "ดูเพิ่มเติม",
             color1: Colors.white,
-            color2: Color.fromRGBO(240, 240, 240, 1),
-            textStyle: TextStyle(fontSize: 16),
+            color2: const Color.fromRGBO(240, 240, 240, 1),
+            textStyle: const TextStyle(fontSize: 16),
           ),
         ],
       ),

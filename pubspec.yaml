@@ -75,6 +75,8 @@ flutter:
     - assets/image/menu/
     - assets/image/catalogs/
     - assets/image/product/
+    - assets/image/shipping/
+    - assets/image/payment/
     - lib/src/Language/en.json
     - lib/src/Language/lo.json
     - lib/src/Language/th.json

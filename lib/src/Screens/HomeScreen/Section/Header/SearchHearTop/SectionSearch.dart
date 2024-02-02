@@ -25,7 +25,7 @@ class SectionSearch extends StatelessWidget {
           const SizedBox(width: 8),
           TextButtonWidget(
             onPass: () {},
-            content: "Akoi Shop",
+            content: "Lala Shop",
             color1: Colors.white,
             color2: Colors.white38,
             fontSize: 24,

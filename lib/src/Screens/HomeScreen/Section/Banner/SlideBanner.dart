@@ -1,10 +1,11 @@
 // ignore_for_file: file_names
-
 import 'package:ako_shop/src/Screens/HomeScreen/Section/Banner/Components/buildIndication.dart';
 import 'package:ako_shop/src/Screens/HomeScreen/Section/Banner/Components/buildLeftButton.dart';
 import 'package:ako_shop/src/Screens/HomeScreen/Section/Banner/Components/buildRigthButton.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import '../../../../Utility/Components/Utils.dart';
 
 class SlideBanner extends StatefulWidget {
   const SlideBanner({super.key});
@@ -38,53 +39,76 @@ class _SlideBannerState extends State<SlideBanner> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = Utils().getScreenSize();
+    int flex = 15;
+    int mainflexContent = 70;
+    if (screenSize.width >= 950 && screenSize.width <= 1270) {
+      flex =30;
+      mainflexContent = 90;
+    } else if (screenSize.width >= 1271 && screenSize.width <= 1370) {
+      flex = 30;
+      mainflexContent = 80;
+    } else {
+      flex = 30;
+      mainflexContent = 100;
+    }
     return Row(
       children: [
-        Stack(
-          children: [
-            buildSliderBannerProduct(),
-            buildIndication(imageList: imageList, current: _current!),
-            buildLeftButton(
-              onTapEven: () {
-                buttonCarouselController.previousPage();
-              },
+        Expanded(
+          flex: mainflexContent,
+          child: Container(
+            child: Stack(
+              children: [
+                buildSliderBannerProduct(),
+                buildIndication(imageList: imageList, current: _current!),
+                buildLeftButton(
+                  onTapEven: () {
+                    buttonCarouselController.previousPage();
+                  },
+                ),
+                buildRigthButton(
+                  onTapEven: () {
+                    buttonCarouselController.nextPage();
+                  },
+                ),
+              ],
             ),
-            buildRigthButton(
-              onTapEven: () {
-                buttonCarouselController.nextPage();
-              },
-            ),
-          ],
+          ),
         ),
         const SizedBox(width: 4),
-        Column(
-          children: [
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () {},
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.19 - 5,
-                  height: 115,
-                  child: Image.asset("assets/image/banner_first_shoice.jpg",
-                      fit: BoxFit.fill),
+        Expanded(
+          flex: flex,
+          child: SizedBox(
+            child: Column(
+              children: [
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: SizedBox(
+                      // width: MediaQuery.of(context).size.width * dividerSizeSub,
+                      height: 115,
+                      child: Image.asset("assets/image/banner_first_shoice.jpg",
+                          fit: BoxFit.fill),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 4),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () {},
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.19 - 5,
-                  height: 115,
-                  child: Image.asset("assets/image/banner_super_market.jpg",
-                      fit: BoxFit.fill),
+                const SizedBox(height: 4),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: SizedBox(
+                      // width: MediaQuery.of(context).size.width * dividerSizeSub,
+                      height: 115,
+                      child: Image.asset("assets/image/banner_super_market.jpg",
+                          fit: BoxFit.fill),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ],
     );
@@ -96,7 +120,7 @@ class _SlideBannerState extends State<SlideBanner> {
       child: GestureDetector(
         onTap: () {},
         child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.46,
+          width: double.infinity,
           height: 235,
           child: CarouselSlider(
             carouselController: buttonCarouselController,
@@ -121,6 +145,7 @@ class _SlideBannerState extends State<SlideBanner> {
             )
                 .toList(),
           ),
+
         ),
       ),
     );
