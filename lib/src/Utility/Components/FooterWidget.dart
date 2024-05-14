@@ -12,7 +12,7 @@ class FooterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = Utils().getScreenSize();
+    Size screenSize = MediaQuery.of(context).size;
     double diverSize = 0.12;
     print("footer${screenSize.width}");
     if (screenSize.width >= 950 && screenSize.width <= 1270) {
@@ -23,7 +23,7 @@ class FooterWidget extends StatelessWidget {
       print("footer 2");
     } else {
       print("footer 3");
-      diverSize = 0.14;
+      diverSize = 0.13;
     }
     return SizedBox(
       height: 420,
@@ -291,7 +291,7 @@ class FooterWidget extends StatelessWidget {
 
   Widget buildAboutPayment(Size screenSize, double diverSize) {
     return Container(
-      width: screenSize.width * diverSize + 20,
+      width: screenSize.width * diverSize + 10,
       decoration: const BoxDecoration(
         color: footerBackgroundColor,
       ),
@@ -300,14 +300,14 @@ class FooterWidget extends StatelessWidget {
           Row(
             children: [
               ImageButtonWidget(
-                width: 55,
+                width: 50,
                 height: 25,
                 onTap: () {},
                 image: "assets/image/payment/bcelOne.png",
               ),
               const SizedBox(width: 5),
               ImageButtonWidget(
-                width: 55,
+                width: 50,
                 height: 25,
                 onTap: () {},
                 image: "assets/image/payment/jdb.png",
@@ -492,7 +492,7 @@ class FooterWidget extends StatelessWidget {
 
   Widget buildDownloadApp(Size screenSize, double diverSize) {
     return Container(
-      width: screenSize.width * diverSize,
+      width: screenSize.width * diverSize-14,
       decoration: const BoxDecoration(
         color: footerBackgroundColor,
       ),
@@ -520,21 +520,21 @@ class FooterWidget extends StatelessWidget {
               Column(
                 children: [
                   ImageButtonWidget(
-                    width: 75,
+                    width: 70,
                     height: 20,
                     onTap: () {},
                     image: "assets/image/ios.png",
                   ),
                   const SizedBox(height: 10),
                   ImageButtonWidget(
-                    width: 75,
+                    width: 70,
                     height: 20,
                     onTap: () {},
                     image: "assets/image/android.png",
                   ),
                   const SizedBox(height: 10),
                   ImageButtonWidget(
-                    width: 75,
+                    width: 70,
                     height: 20,
                     onTap: () {},
                     image: "assets/image/app_gallery.png",
